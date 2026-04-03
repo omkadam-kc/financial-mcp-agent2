@@ -6,7 +6,8 @@ import axios from "axios"
 export default function AnalystActions({ transactionId }) {
 
   const sendFeedback = async (decision: string) => {
-    await axios.post("http://localhost:5000/api/feedback", {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    await axios.post(`${apiUrl}/api/feedback`, {
       transactionId,
       decision,
       reason: "Manual analyst review",

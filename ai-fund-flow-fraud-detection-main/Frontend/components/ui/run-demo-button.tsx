@@ -5,7 +5,8 @@ import axios from "axios";
 
 export default function RunDemoButton() {
   const handleRunDemo = async () => {
-    await axios.post("http://localhost:5000/api/demo/run");
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    await axios.post(`${apiUrl}/api/demo/run`);
   };
 
   return (

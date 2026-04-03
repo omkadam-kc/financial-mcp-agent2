@@ -10,7 +10,8 @@ export default function FraudChatbot({ transaction }) {
   const [chat, setChat] = useState<any[]>([])
 
   const sendMessage = async () => {
-    const res = await axios.post("http://localhost:5000/api/chat", {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const res = await axios.post(`${apiUrl}/api/chat`, {
       message,
       transaction,
     })
