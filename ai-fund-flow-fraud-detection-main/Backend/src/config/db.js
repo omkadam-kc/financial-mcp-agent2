@@ -3,10 +3,11 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    const uri = process.env.MONGO_URL || process.env.MONGO_URI || "mongodb://127.0.0.1:27017/frauddb";
+    await mongoose.connect(uri, {
       serverSelectionTimeoutMS: 3000 // Try for 3 seconds before giving up
     });
-    console.log("✅ MongoDB Connected (External)");
+    console.log("✅ MongoDB Connected (External/Railway)");
   } catch (error) {
     console.warn("⚠️ Local MongoDB not found. Starting In-Memory MongoDB for Demo...");
     try {
